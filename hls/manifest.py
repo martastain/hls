@@ -8,13 +8,16 @@ class HLSManifest():
         self.path_template = kwargs.get("path_template", "/media/{}.ts")
         self.hls_version = 3
         self.segments = []
+        self.duration = 0
         self.url = kwargs.get("url", "/")
 
         if kwargs.get("parse", False):
             parse_hls(self, kwargs["parse"])
 
     def add_segment(self, segment):
+        segment.clip_time = self.duration
         self.segments.append(segment)
+        self.duration += segment.duration
 
     @property
     def media_sequence(self):
@@ -29,8 +32,7 @@ class HLSManifest():
         except ValueError:
             return 0
 
-    @property
-    def manifest(self):
+    def render(self):
         result = "#EXTM3U\n"
         result+= "#EXT-X-VERSION:{}\n".format(self.hls_version)
         result+= "#EXT-X-MEDIA-SEQUENCE:{}\n".format(self.media_sequence)
