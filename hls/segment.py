@@ -2,6 +2,10 @@ class HLSSegment():
     def __init__(self, manifest, **kwargs):
         self.manifest = manifest
         self.meta = kwargs
+        self.clip_time = 0
+
+    def __repr__(self):
+        return "HLS Segment {}".format(self.media_sequence)
 
     @property
     def number(self):
