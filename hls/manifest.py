@@ -5,7 +5,7 @@ __all__ = ["HLSManifest"]
 
 class HLSManifest():
     def __init__(self, **kwargs):
-        self.path_template = kwargs.get("path_template", "/media/{}.ts")
+        self.path_template = kwargs.get("path_template", "/media/{number}.ts")
         self.hls_version = 3
         self.segments = []
         self.duration = 0

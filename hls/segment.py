@@ -21,7 +21,7 @@ class HLSSegment():
 
     @property
     def is_first(self):
-        return self.number == 0
+        return self.meta.get("is_first", self.number == 0)
 
     @property
     def url(self):

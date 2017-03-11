@@ -19,6 +19,7 @@ def parse_hls(manifest, data):
             segment = HLSSegment(
                     manifest,
                     media_sequence=media_sequence,
+                    number=media_sequence,
                     duration=float(line.split(":")[1].split(",")[0]),
                     url=lines[i+1].strip()
                     )
