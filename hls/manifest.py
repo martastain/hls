@@ -47,7 +47,7 @@ class HLSManifest():
             if segment.is_first:
                 result += mk_tag(ext_x_discontinuity)
             result += "#EXTINF:{},\n".format(segment.duration)
-            result += self.path_template.format(
+            result += segment.url or self.path_template.format(
                     number=self.media_sequence + i
                     )
             result += "\n"
